@@ -1,0 +1,11 @@
+fastapi==0.115.7
+uvicorn[standard]==0.34.0
+aerich==0.7.2
+asyncpg==0.30.0
+bcrypt==4.2.0
+passlib==1.7.4
+python-jose==3.3.0
+python-multipart==0.0.17
+
+tortoise-orm==0.19.3
+pydantic==1.10.17
