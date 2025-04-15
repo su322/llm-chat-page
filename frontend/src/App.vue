@@ -76,6 +76,8 @@ body {
   display: flex;
   flex: 1;
   margin-top: 60px; /* 导航栏高度 */
+  height: calc(100vh - 60px);
+  overflow: hidden;
 }
 
 .content-container:not(.with-sidebar) {
@@ -90,6 +92,7 @@ body {
   flex: 1;
   transition: margin-left 0.3s;
   padding: 20px;
+  overflow-y: auto;
 }
 
 .main-content.sidebar-collapsed {

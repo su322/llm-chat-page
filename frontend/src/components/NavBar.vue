@@ -63,7 +63,7 @@ export default {
       return this.$store.getters.getUsername || '用户';
     },
     showBorder() {
-      return this.isLoggedIn && this.$route.path === '/chat';
+      return true;
     }
   },
   methods: {

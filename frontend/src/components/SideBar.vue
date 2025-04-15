@@ -30,15 +30,6 @@
     <div v-else class="no-history">
       <p>登录后可以保存历史对话</p>
     </div>
-
-    <div class="sidebar-footer">
-      <el-menu class="sidebar-menu" :collapse="isCollapsed" router>
-        <el-menu-item index="/settings">
-          <i class="el-icon-setting"></i>
-          <template #title>设置</template>
-        </el-menu-item>
-      </el-menu>
-    </div>
   </div>
 </template>
 
