@@ -20,7 +20,9 @@
     <div class="user-section">
       <template v-if="isLoggedIn">
         <el-dropdown trigger="click">
-          <el-avatar :size="32" :icon="'el-icon-user'"></el-avatar>
+          <el-avatar :size="32" class="avatar user-avatar">
+            {{ username.charAt(0).toUpperCase() }}
+          </el-avatar>
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item @click="logout">
@@ -42,6 +44,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: 'NavBar',
   props: {
@@ -60,7 +64,7 @@ export default {
       return this.$store.getters.isAuthenticated;
     },
     username() {
-      return this.$store.getters.getUsername || '用户';
+      return this.$store.getters.getUsername || 'User'; //前面的这个有问题，获取不到用户名
     },
     showBorder() {
       return true;
@@ -74,8 +78,22 @@ export default {
       await this.$store.dispatch('logOut');
       this.$router.push('/chat');
     },
-    startNewChat() {
-      this.$emit('new-chat');
+    async startNewChat() {
+      if (!this.isLoggedIn) return;
+      try {
+        const { data } = await axios.post('/sessions', {
+          user_id: this.$store.getters.stateUser.id,
+          title: '新对话'
+        });
+
+        window.dispatchEvent(new CustomEvent('new-chat-created', {
+          detail: data
+        }));
+
+        this.$router.push('/chat?id=' + data.id);
+      } catch (error) {
+        console.error('创建新会话错误:', error);
+      }
     }
   }
 };
@@ -219,5 +237,20 @@ html, body {
   color: #000;
   background-color: #d3d3d3 !important; /* Match the sidebar hover background */
   border-radius: 4px; /* Match the sidebar button border radius */
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.user-avatar {
+  background-color: #007bff;
+  color: white;
 }
 </style>

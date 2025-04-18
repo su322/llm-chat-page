@@ -1,5 +1,10 @@
 # 基于FastApi、Vue、Ollama的智能对话系统
 
+## 没做的地方
+1、没有做AI上下文\
+2、前端样式没有做到预期\
+3、会话id没有做删除后回退，这样后面新建的会话数字不连续\
+4、没有做将会话内容总结为会话标题
 ## 后端 (localhost:5000)
 1、安装**docker**（最好用命令行安装，否则会默认安装到C盘）\
 2、启动docker\
@@ -24,7 +29,8 @@ docker-compose exec backend aerich upgrade
 docker exec -it 你的Ollama容器id sh
 ollama pull deepseek-r1:latest
 ```
-自动创建的ollama_data文件夹与容器内.ollama文件夹对应，用于持久化模型，下次不用重复拉。模型在代码中默认为deepseek-r1:latest
+自动创建的ollama_data文件夹与容器内.ollama文件夹对应，用于持久化模型，下次不用重复拉。模型在代码中默认为deepseek-r1:latest\
+如果要换模型，前后端都有要改的地方
 ## 前端 (localhost:8080)
 （如果8080端口被占用会递增至8081端口）\
 1、安装**Node.js**\
