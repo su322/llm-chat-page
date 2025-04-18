@@ -40,3 +40,6 @@ cd frontend
 npm install
 npm run serve
 ```
+## 效果图
+![image](https://github.com/user-attachments/assets/e3fc68f1-07fd-4b7d-ac6c-9c0d3c6625f6)![image](https://github.com/user-attachments/assets/d8463091-5d6b-4ca3-9a27-4f27d7c0bd76)
+
