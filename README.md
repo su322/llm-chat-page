@@ -1,4 +1,4 @@
-# 基于FastApi、Vue、Ollama的智能对话系统
+# 基于FastApi、Vue、Ollama的AI对话系统
 
 ## 没做的地方
 1、没有做AI上下文\
