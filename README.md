@@ -40,6 +40,64 @@ cd frontend
 npm install
 npm run serve
 ```
+## 项目结构
+```
+llm-chat-page/
+├── backend/                         # 后端服务
+│   ├── Dockerfile                   # 后端Docker配置
+│   ├── migrations/                  # 数据库迁移文件
+│   │   └── models/                  # 数据库模型
+│   ├── pyproject.toml               # Aerich配置
+│   ├── requirements.txt             # Python依赖
+│   └── src/
+│       ├── core/
+│       │   ├── auth/                # 认证相关
+│       │   │   ├── jwthandler.py    # JWT处理
+│       │   │   └── users.py         # 用户认证
+│       │   ├── crud/                # 数据库操作
+│       │   │   └── users.py         # 用户CRUD
+│       │   ├── database/            # 数据库配置
+│       │   │   ├── config.py        # ORM配置
+│       │   │   ├── models.py        # 数据库模型定义
+│       │   │   └── register.py      # ORM注册
+│       │   ├── schemas/             # Pydantic模型
+│       │   │   ├── token.py         # Token模型
+│       │   │   └── users.py         # 用户模型
+│       │   └── routes/              # API路由
+│       │       ├── ollama_chat.py   # AI聊天路由
+│       │       └── users.py         # 用户路由
+│       ├── main.py                  # FastAPI入口
+│       └── routes/                  # API路由
+│           └── users.py             # 用户路由
+│
+├── frontend/                        # 前端Vue项目
+│   ├── public/                      # 静态资源
+│   │   ├── index.html               # 主HTML
+│   │   └── *.svg                    # 图标资源
+│   ├── src/
+│   │   ├── components/              # Vue组件
+│   │   │   ├── NavBar.vue           # 导航栏
+│   │   │   └── SideBar.vue          # 侧边栏
+│   │   ├── router                   # 路由管理
+│   │   │   └── index.js
+│   │   ├── store/                   # Vuex状态管理
+│   │   │   ├── index.js             # 状态模块管理
+│   │   │   └── modules/
+│   │   │       └── users.js         # 用户状态
+│   │   ├── views/                   # 页面视图
+│   │   │   ├── ChatView.vue         # 聊天主界面
+│   │   │   ├── LoginView.vue        # 登录页
+│   │   │   └── RegisterView.vue     # 注册页
+│   │   ├── App.vue                  # 根组件
+│   │   └── main.js                  # 入口文件
+│   ├── package.json                 # 前端依赖
+│   ├── vue.config.js                # Vue配置
+│   └── babel.config.js              # Babel配置
+├── .gitattributes                   # Git换行符规则
+├── docker-compose.yml               # 容器编排
+├── README.md                        # 项目说明
+└── .gitignore                       # Git忽略规则
+```
 ## 效果图
 ![image](https://github.com/user-attachments/assets/e3fc68f1-07fd-4b7d-ac6c-9c0d3c6625f6)![image](https://github.com/user-attachments/assets/d8463091-5d6b-4ca3-9a27-4f27d7c0bd76)
 
