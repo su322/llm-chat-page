@@ -16,17 +16,6 @@
         </div>
 
         <div class="form-group">
-          <label for="email">邮箱</label>
-          <input
-            type="email"
-            id="email"
-            v-model="form.email"
-            placeholder="您的邮箱地址"
-            required
-          />
-        </div>
-
-        <div class="form-group">
           <label for="password">密码</label>
           <input
             type="password"
@@ -75,7 +64,6 @@ export default defineComponent({
     return {
       form: {
         username: '',
-        email: '',
         password: '',
         confirmPassword: '',
         agreeTerms: false
@@ -95,7 +83,6 @@ export default defineComponent({
         this.isLoading = true;
         const userData = new FormData();
         userData.append('username', this.form.username);
-        userData.append('email', this.form.email);
         userData.append('password', this.form.password);
 
         await this.register(userData);
