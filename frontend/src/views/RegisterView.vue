@@ -84,12 +84,11 @@ export default defineComponent({
         const userData = new FormData();
         userData.append('username', this.form.username);
         userData.append('password', this.form.password);
-
         await this.register(userData);
         this.$router.push('/chat');
       } catch (error) {
         console.error('Registration failed:', error);
-        // You can add error handling UI here
+        alert('注册失败');
       } finally {
         this.isLoading = false;
       }

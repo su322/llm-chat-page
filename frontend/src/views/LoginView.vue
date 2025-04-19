@@ -61,14 +61,14 @@ export default defineComponent({
     async submit() {
       try {
         this.isLoading = true;
-        const User = new FormData();
-        User.append('username', this.form.username);
-        User.append('password', this.form.password);
-        await this.logIn(User);
+        const userData = new FormData();
+        userData.append('username', this.form.username);
+        userData.append('password', this.form.password);
+        await this.logIn(userData);
         this.$router.push('/chat');
       } catch (error) {
         console.error('Login failed:', error);
-        // You can add error handling UI here
+        alert('用户名或密码错误');
       } finally {
         this.isLoading = false;
       }

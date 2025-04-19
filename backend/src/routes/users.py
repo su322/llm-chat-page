@@ -1,6 +1,6 @@
 from datetime import timedelta
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Response
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from fastapi.security import OAuth2PasswordRequestForm
@@ -116,3 +116,10 @@ async def delete_user(
         Status: 删除操作的状态信息。
     """
     return await crud.delete_user(user_id, current_user)
+
+
+@router.post("/user/logout")
+async def logout(response: Response):
+    # 清空 Authorization cookie（让其立刻过期）
+    response.delete_cookie("Authorization")
+    return {"message": "Logged out successfully"}

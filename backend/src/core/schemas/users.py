@@ -14,6 +14,6 @@ UserOutSchema = pydantic_model_creator(
 )
 
 # 创建一个名为 User 的 Pydantic 模型，用于表示数据库中的用户数据，不包括创建时间和修改时间字段
-UserDatabaseSchema = pydantic_model_creator(
-    Users, name="User", exclude=["created_at", "modified_at"]
-)
+# UserDatabaseSchema = pydantic_model_creator(
+#     Users, name="User", exclude=["created_at", "modified_at"]
+# )

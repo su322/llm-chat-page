@@ -18,22 +18,19 @@ const getters = {
 // 定义动作
 const actions = {
   // 注册新用户
-  async register({dispatch}, form) {
-    // 发送 POST 请求到 register 接口
-    await axios.post('register', form);
-    // 创建一个 FormData 对象，用于登录
-    let UserForm = new FormData();
-    // 将用户名和密码添加到 FormData 对象中
-    UserForm.append('username', form.username);
-    UserForm.append('password', form.password);
-    // 调用 logIn 动作进行登录
-    await dispatch('logIn', UserForm);
+  async register({ dispatch }, userData) {
+    try {
+      await axios.post('user/logout');
+      await axios.post('register', userData);
+      await dispatch('logIn', userData);
+    } catch (e) {
+      console.error('注册失败', e);
+      throw e;
+    }
   },
   // 用户登录
-  async logIn({dispatch}, user) {
-    // 发送 POST 请求到 login 接口
-    await axios.post('login', user);
-    // 调用 viewMe 动作获取当前用户信息
+  async logIn({ dispatch }, userData) {
+    await axios.post('login', userData);
     await dispatch('viewMe');
   },
   // 获取当前用户信息
@@ -43,18 +40,16 @@ const actions = {
     // 将获取到的用户数据提交到 mutations 中更新状态
     await commit('setUser', data);
   },
-  // 删除用户（仅供参考，可能需要根据实际需求进行调整）
-  // eslint-disable-next-line no-empty-pattern
-  async deleteUser({}, id) {
-    // 发送 DELETE 请求到 user/id 接口
-    await axios.delete(`user/${id}`);
-  },
   // 用户登出
-  async logOut({commit}) {
-    // 将用户设置为 null，表示用户已登出
-    let user = null;
-    // 提交 logout 突变来更新状态
-    commit('logout', user);
+  async logOut({ commit }) {
+    try {
+      await axios.post('user/logout'); // 调用 logout 接口清除 Cookie
+    } catch (e) {
+      console.warn('后端登出失败（可能已经登出）', e);
+    }
+
+    commit('logout');
+    window.location.reload(); // 刷新页面，清理前端状态
   }
 };
 
