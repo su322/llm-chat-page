@@ -69,9 +69,7 @@ llm-chat-page/
 │       │   └── routes/              # API路由
 │       │       ├── ollama_chat.py   # AI聊天路由
 │       │       └── users.py         # 用户路由
-│       ├── main.py                  # FastAPI入口
-│       └── routes/                  # API路由
-│           └── users.py             # 用户路由
+│       └── main.py                  # FastAPI入口
 │
 ├── frontend/                        # 前端Vue项目
 │   ├── public/                      # 静态资源
