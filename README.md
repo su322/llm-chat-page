@@ -27,6 +27,7 @@ docker-compose exec backend aerich init-db # 初始化数据库 生成migrations
 docker-compose exec backend aerich migrate
 docker-compose exec backend aerich upgrade
 ```
+*可使用localhost:5000/docs测试后端接口
 ## Ollama
 ```
 docker exec -it 你的Ollama容器id sh
